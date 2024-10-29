@@ -1,0 +1,29 @@
+/* App.css */
+
+/* Navbar styling */
+.navbar {
+  background-color: #333;           /* Dark background color */
+  padding: 10px 20px;               /* Padding for spacing */
+  position: fixed;                  /* Fixed at the top of the page */
+  top: 0;                           /* Positioned at the top */
+  width: 100%;                      /* Full width */
+  z-index: 1000;                    /* Ensure it appears on top */
+  display: flex;                    /* Flexbox for layout */
+  justify-content: flex-start;      /* Align items to the left */
+  gap: 20px;                        /* Space between the links */
+}
+
+.navbar a {
+  color: #fff;                      /* White text color */
+  text-decoration: none;            /* Remove underline */
+  font-weight: bold;
+}
+
+.navbar a:hover {
+  text-decoration: underline;       /* Underline on hover */
+}
+
+/* Ensure rest of the content is pushed down below the navbar */
+.App {
+  margin-top: 60px;                 /* Adjust based on navbar height */
+}

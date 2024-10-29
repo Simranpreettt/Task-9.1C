@@ -1,0 +1,37 @@
+/* FindQuestionPage.css */
+
+.find-question {
+    margin: 20px;
+  }
+  
+  .filters {
+    margin-bottom: 20px;
+  }
+  
+  .filters input {
+    margin-right: 10px;
+  }
+  
+  .question-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .question-card h3 {
+    margin: 0;
+  }
+  
+  .question-card p {
+    margin: 5px 0;
+  }
+  
+  .expanded-content {
+    background-color: #eef;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  

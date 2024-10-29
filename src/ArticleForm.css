@@ -1,0 +1,15 @@
+.article-form {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+  
+.article-form .field {
+    margin-bottom: 15px;
+}
+  
+.article-form .ui.button {
+    margin-top: 10px;
+}
+  

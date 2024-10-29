@@ -1,0 +1,15 @@
+.question-form {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+  
+.question-form .field {
+    margin-bottom: 15px;
+}
+  
+.question-form .ui.button {
+    margin-top: 10px;
+}
+  

@@ -1,0 +1,16 @@
+.banner {
+    background-color: #555;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2em;
+  }
+  
+  .banner img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+  }
+  
