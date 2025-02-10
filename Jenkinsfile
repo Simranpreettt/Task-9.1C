@@ -47,6 +47,7 @@ pipeline {
             steps {
                 echo 'Releasing to production...'
                 script {
+                    sh 'npm install -g netlify-cli'
                     sh "netlify deploy --dir=./build --prod --site=${env.NETLIFY_SITE_ID}"
                 }
             }
