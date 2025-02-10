@@ -39,19 +39,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        success {
-            emailext subject: "Pipeline '${currentBuild.fullDisplayName}' Successful",
-                      body: 'The build was successful. Congratulations!',
-                      to: 'simranpreetkaur23015@gmail.com',
-                      attachLog: true
-        } 
-        failure {
-            emailext subject: "Pipeline '${currentBuild.fullDisplayName}' Failed",
-                      body: 'The build has failed. Please investigate.',
-                      to: 'simranpreetkaur23105@gmail.com',
-                      attachLog: true
-        }
-    }
 }
