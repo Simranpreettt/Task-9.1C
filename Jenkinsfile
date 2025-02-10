@@ -36,9 +36,9 @@ pipeline {
         stage('Deploy to Test Environment') {
             steps {
                 echo 'Deploying to test environment...'
-                sh 'docker build -t my-react-app .'  // Use a batch file for Windows
+                sh 'docker build -t my-react-app .'  
                 sh 'docker stop my-react-container || true'
-                sh 'docker run my-react-container || true'
+                sh 'docker rm my-react-container || true'
                 sh 'docker run -d --name my-react-container -p 3000:3000 my-react-app'
             }
         }
@@ -46,24 +46,24 @@ pipeline {
         stage('Release to Production') {
             steps {
                 echo 'Releasing to production...'
-                    script {
-                        sh "sudo netlify deploy --dir-./build --prod --site-${env.NETLIFY_SITE_ID}"
-                    }// Use batch file or Git Bash
+                script {
+                    sh "netlify deploy --dir=./build --prod --site=${env.NETLIFY_SITE_ID}"
+                }
             }
         }
     }
 
     post {
         success {
-            emailext subject: "Pipeline '${CurrentBuild.fullDisplayName}' Successful",
+            emailext subject: "Pipeline '${currentBuild.fullDisplayName}' Successful",
                       body: 'The build was successful. Congratulations!',
-                       to: 'simranpreetkaur23015@gmail.com',
+                      to: 'simranpreetkaur23015@gmail.com',
                       attachLog: true
         } 
         failure {
-            emailtext subject: "Pipeline '${currentBuild.fullDisplayName}' Failed",
-                       body: 'The build has failed. Please investigate.',
-                        to: 'simranpreetkaur23105@gmail.com',
+            emailext subject: "Pipeline '${currentBuild.fullDisplayName}' Failed",
+                      body: 'The build has failed. Please investigate.',
+                      to: 'simranpreetkaur23105@gmail.com',
                       attachLog: true
         }
     }
