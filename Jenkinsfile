@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        NETLIFY_SITE_ID = 'e438700d-39c6-4f0f-ade1-8981bfd8a69a'
-    }
-
     stages {
         stage('Build') {
             steps {
@@ -46,10 +42,10 @@ pipeline {
         stage('Release to Production') {
             steps {
                 echo 'Releasing to production...'
-               script {
-                   sh 'npm install -g netlify-cli'  // Install Netlify CLI globally
-                   sh 'netlify deploy --dir=./build --prod --site=${env.NETLIFY_SITE_ID}'
-               }
+                withEnv(["NETLIFY_SITE_ID=e438700d-39c6-4f0f-ade1-8981bfd8a69a"]) {
+                    sh 'if ! command -v netlify &> /dev/null; then npm install -g netlify-cli; fi'
+                    sh '$(npm root -g)/netlify-cli/cli.js deploy --dir=./build --prod --site=$NETLIFY_SITE_ID'
+                }
             }
         }
     }
