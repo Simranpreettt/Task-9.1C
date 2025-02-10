@@ -38,25 +38,6 @@ pipeline {
                 sh 'docker run -d --name my-react-container -p 3000:3000 my-react-app'
             }
         }
-
-        stage('Release to Production') {
-            steps {
-                echo 'Releasing to production...'
-                script {
-            // Ensure Netlify CLI is installed globally
-            sh 'npm install -g netlify-cli'
-            
-            // Add Netlify CLI path explicitly
-            sh 'export PATH=$PATH:$(npm root -g)/.bin'
-
-            // Verify if Netlify CLI is recognized
-            sh 'which netlify || echo "Netlify CLI not found!"'
-
-            // Deploy using Netlify CLI
-            sh 'C:\Users\Hp 184\AppData\Roaming\npm\netlify.cmd deploy --dir=./build --prod --site=e438700d-39c6-4f0f-ade1-8981bfd8a69a'
-        }
-            }
-        }
     }
 
     post {
