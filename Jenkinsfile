@@ -53,7 +53,7 @@ pipeline {
             sh 'which netlify || echo "Netlify CLI not found!"'
 
             // Deploy using Netlify CLI
-            sh 'netlify deploy --dir=./build --prod --site=e438700d-39c6-4f0f-ade1-8981bfd8a69a'
+            sh 'C:\Users\Hp 184\AppData\Roaming\npm\netlify.cmd deploy --dir=./build --prod --site=e438700d-39c6-4f0f-ade1-8981bfd8a69a'
         }
             }
         }
