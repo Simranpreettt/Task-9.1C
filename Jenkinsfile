@@ -9,8 +9,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                bat 'npm install'
-                bat 'npm run build'
+                sh 'npm install'
+                sh 'npm run build'
             }
         }
 
@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        bat 'npm test --passWithNoTests'
+                        sh 'npm test --passWithNoTests'
                     } catch (Exception e) {
                         echo 'Tests failed, but continuing the pipeline...'
                     }
@@ -29,17 +29,17 @@ pipeline {
         stage('Code Quality') {
             steps {
                 echo 'Running code quality checks...'
-                bat 'npx eslint src'
+                sh 'npx eslint src'
             }
         }
 
         stage('Deploy to Test Environment') {
             steps {
                 echo 'Deploying to test environment...'
-                bat 'docker build -t my-react-app .'  // Use a batch file for Windows
-                bat 'docker stop my-react-container || true'
-                bat 'docker run my-react-container || true'
-                bat 'docker run -d --name my-react-container -p 3000:3000 my-react-app'
+                sh 'docker build -t my-react-app .'  // Use a batch file for Windows
+                sh 'docker stop my-react-container || true'
+                sh 'docker run my-react-container || true'
+                sh 'docker run -d --name my-react-container -p 3000:3000 my-react-app'
             }
         }
 
@@ -47,7 +47,7 @@ pipeline {
             steps {
                 echo 'Releasing to production...'
                     script {
-                        bat "sudo netlify deploy --dir-./build --prod --site-${env.NETLIFY_SITE_ID}"
+                        sh "sudo netlify deploy --dir-./build --prod --site-${env.NETLIFY_SITE_ID}"
                     }// Use batch file or Git Bash
             }
         }
