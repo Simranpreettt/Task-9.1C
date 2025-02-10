@@ -43,7 +43,14 @@ pipeline {
             steps {
                 echo 'Releasing to production...'
                 script {
-                    sh 'export PATH=$PATH:C:\\Users\\Hp 184\\AppData\\Roaming\\npm'
+                    // Manually add Netlify CLI path
+                    sh 'export PATH=$PATH:/c/Users/Hp 184/AppData/Roaming/npm'
+                    
+                    // Verify if netlify CLI is recognized
+                    sh 'echo "Current PATH: $PATH"'
+                    sh 'which netlify'
+                    
+                    // Deploy using Netlify CLI
                     sh 'netlify deploy --dir=./build --prod --site=e438700d-39c6-4f0f-ade1-8981bfd8a69a'
                 }
             }
