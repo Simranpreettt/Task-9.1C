@@ -41,7 +41,8 @@ pipeline {
     }
 
     post {
-        always {
+    always {
+        script {
             emailext (
                 to: 'simranpreetkaur23105@gmail.com',
                 subject: "Jenkins Pipeline: ${currentBuild.fullDisplayName}",
