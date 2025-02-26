@@ -41,23 +41,29 @@ pipeline {
     }
 
     post {
-        always {
+        success {
             script {
-                emailext (
-                    to: 'simranpreetkaur23105@gmail.com',
-                    subject: "Jenkins Pipeline: ${currentBuild.fullDisplayName}",
-                    body: """
-                        <p>Pipeline Execution Completed:</p>
-                        <ul>
-                            <li>Project: ${env.JOB_NAME}</li>
-                            <li>Build Number: ${env.BUILD_NUMBER}</li>
-                            <li>Status: ${currentBuild.currentResult}</li>
-                            <li>Check the console output for more details: <a href="${env.BUILD_URL}">Build Link</a></li>
-                        </ul>
-                    """,
-                    mimeType: 'text/html'
-                )
+                echo "Site Deployed at: http://localhost:3000"
             }
+            emailext (
+                subject: "Jenkins Build & Deployment Successful - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+                The Jenkins pipeline for ${env.JOB_NAME} completed successfully.
+                
+                - *Docker Deployment URL:* http://localhost:3000
+                - *Netlify Release URL:* https://${NETLIFY_SITE_ID}.netlify.app
+                
+                """,
+                to: "simranpreetkaur23105@gmail.com"
+            )
         }
-    }
+
+        failure {
+            emailext (
+                subject: "Jenkins Build Failed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "The Jenkins pipeline for ${env.JOB_NAME} failed. Check the logs for more details.",
+                to: "simranpreetkaur23105@gmail.com"
+            )
+        }
+    }
 }
