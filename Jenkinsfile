@@ -51,7 +51,6 @@ pipeline {
                 The Jenkins pipeline for ${env.JOB_NAME} completed successfully.
                 
                 - *Docker Deployment URL:* http://localhost:3000
-                - *Netlify Release URL:* https://${NETLIFY_SITE_ID}.netlify.app
                 
                 """,
                 to: "simranpreetkaur23105@gmail.com"
