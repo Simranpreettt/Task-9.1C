@@ -53,7 +53,7 @@ pipeline {
                 - *Docker Deployment URL:* http://localhost:3000
                 
                 """,
-                to: "simranpreetkaur23105@gmail.com"
+                to: "xr045jss@gmail.com"
             )
         }
 
@@ -61,7 +61,7 @@ pipeline {
             emailext (
                 subject: "Jenkins Build Failed - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: "The Jenkins pipeline for ${env.JOB_NAME} failed. Check the logs for more details.",
-                to: "simranpreetkaur23105@gmail.com"
+                to: "xr045jss@gmail.com"
             )
         }
     }
