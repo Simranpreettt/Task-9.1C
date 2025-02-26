@@ -39,4 +39,23 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            emailext (
+                to: 'simranpreetkaur23105@gmail.com',
+                subject: "Jenkins Pipeline: ${currentBuild.fullDisplayName}",
+                body: """
+                    <p>Pipeline Execution Completed:</p>
+                    <ul>
+                        <li>Project: ${env.JOB_NAME}</li>
+                        <li>Build Number: ${env.BUILD_NUMBER}</li>
+                        <li>Status: ${currentBuild.currentResult}</li>
+                        <li>Check the console output for more details: <a href="${env.BUILD_URL}">Build Link</a></li>
+                    </ul>
+                """,
+                mimeType: 'text/html'
+            )
+        }
+    }
 }
